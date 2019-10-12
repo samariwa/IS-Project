@@ -1,5 +1,16 @@
-@extends('main')
+@extends('diff_main')
 @section('title','| Edit Blog Post')
+@section('stylesheets')
+     <script src='https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script>
+    <script>
+      tinymce.init(
+      {
+          selector: 'textarea',
+          plugins: 'link code',
+          menubar: false,
+      });
+    </script>
+@endsection
 @section('content')
 <div class="row">
     {!! Form::model($post,array('route'=> array('posts.update',$post->id),'method'=>'PUT'))!!}

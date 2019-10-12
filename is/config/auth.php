@@ -47,17 +47,37 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
-
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
         ],
 
-        'api-admin' => [
+        'admin-api' => [
             'driver' => 'token',
             'provider' => 'admins',
             'hash' => false,
         ],
+        'blogger' => [
+            'driver' => 'session',
+            'provider' => 'bloggers',
+        ],
+
+        'blogger-api' => [
+            'driver' => 'token',
+            'provider' => 'bloggers',
+            'hash' => false,
+        ],
+        'superuser' => [
+            'driver' => 'session',
+            'provider' => 'superusers',
+        ],
+
+        'superuser-api' => [
+            'driver' => 'token',
+            'provider' => 'superusers',
+            'hash' => false,
+        ],
+  
     ],
 
     /*
@@ -82,11 +102,19 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
-
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Admin::class,
-        ],   
+        ],
+        'bloggers' => [
+            'driver' => 'eloquent',
+            'model' => App\Blogger::class,
+        ],
+        'superusers' => [
+            'driver' => 'eloquent',
+            'model' => App\Superuser::class,
+        ],
+     
 
         // 'users' => [
         //     'driver' => 'database',
@@ -116,9 +144,19 @@ return [
             'expire' => 60,
         ],
         'admins' => [
-            'provider' => 'admin',
+            'provider' => 'admins',
             'table' => 'password_resets',
             'expire' => 15,
+        ],
+        'bloggers' => [
+            'provider' => 'bloggers',
+            'table' => 'password_resets',
+            'expire' => 15,
+        ],
+        'superusers' => [
+            'provider' => 'superusers',
+            'table' => 'password_resets',
+            'expire' => 10,
         ],
     ],
 

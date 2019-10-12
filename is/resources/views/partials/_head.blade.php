@@ -12,4 +12,4 @@
 <!--incase you want to add a stylesheet-->
 @yield('stylesheets')
 <!--change the title for each page-->
-<title>Laravel Blog @yield('title')</title>
+<title>Kwanza Tukule @yield('title')</title>

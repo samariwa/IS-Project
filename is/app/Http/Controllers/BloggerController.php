@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
+use App\Comment;
 
-class AdminController extends Controller
+class BloggerController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -23,6 +25,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('adminpages.dashboard');
+        $posts = Post::orderBy('id','desc')->paginate(10);
+        return view('posts.index')->withPosts($posts);
     }
+
 }

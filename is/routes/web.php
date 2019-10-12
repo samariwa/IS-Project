@@ -41,10 +41,16 @@ Route::put('comments/{id}',array('uses'=>'CommentsController@update', 'as'=>'com
 Route::delete('comments/{id}',array('uses'=>'CommentsController@destroy', 'as'=>'comments.destroy'));
 Route::get('comments/{id}/delete',array('uses'=>'CommentsController@delete', 'as'=>'comments.delete'));
 Auth::routes(['verify'=>true]);
-
-Route::get('/home', 'HomeController@index')->name('home');
-
+Route::resource('posts', 'PostController');
+Route::resource('admins', 'AdminResourceController');
+Route::resource('bloggers', 'BloggerResourceController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/admin','AdminController@index');
+
+Route::get('/admin','AdminController@index')->name('admin');
+Route::get('/blogger','BloggerController@index')->name('blogger');
+Route::get('/superuser','SuperuserController@index')->name('superuser');
+Route::get('/manageAdmins','SuperuserController@admin')->name('manageAdmins');
+Route::get('/manageBloggers','SuperuserController@blogger')->name('manageBloggers');
+Route::post('/logout', 'Auth\LoginController@logout');

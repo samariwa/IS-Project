@@ -1,15 +1,15 @@
-@extends('main')
+@extends('diff_main')
 @section('title', '| View Post')
 @section('content')
 <div class="row">
 	<div class="col-md-8">
    <img src="{{ asset('images/' . $post->image)}}" height="400" width="800"/>     
    <h1>{{ $post->title }}</h1>
-   <p class="lead">{{ $post->body }}</p>
+   <p class="lead">{!! $post->body !!}</p>
    <!--$post variable that was created in the PostController in the show section-->
    <div id="backend-comments" style="margin-top:50px">
         <h3>Comments <small>{{ $post->comments()->count() }} total</small></h3>
-        <table class="table">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>Name</th>

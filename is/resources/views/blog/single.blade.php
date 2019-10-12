@@ -5,7 +5,7 @@
      	<div class="col-md-8 col-md-offset-2">
      		<img src="{{ asset('images/' . $post->image)}}" height="400" width="800"/>
      		<h1>{{ $post->title }}</h1>
-     		<p>{{ $post->body }}</p>
+     		<p>{!! $post->body !!}</p>
         </div>
      </div>
      <h5><strong>Comments</strong>&ensp;<i class="fa fa-comments"></i></h5>
@@ -19,14 +19,13 @@
 		     			<h4>{{ $comment->name }}</h4>
 	     		    </div>
 	     		</div>
-	     	</br></br>
                 <div class="author-time">
 	     			    <p>{{ date('F j, Y H:i', strtotime($comment->created_at)) }}</p>
 	     		 </div>  
 	     		<div class="comment-content"> 	
 	                {{ $comment->comment }}
 	            </div>  
-
+                  <br>
             </div>
      		@endforeach 	    
      	</div>

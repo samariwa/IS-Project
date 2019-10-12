@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Post;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,25 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('main');
+        // User role
+    $role = Auth::user()->role; 
+    
+    // Check user role
+    switch ($role) {
+        case 'admin':
+         return view('adminpages.dashboard');
+        break; 
+        case 'blogger':
+                return view('posts.index');
+        break; 
+        case 'superuser':
+                return view('superuserpages.dashboard');
+        break; 
+        default:
+                return view('pages/welcome'); 
+            break;
+                
     }
+}
+
 }

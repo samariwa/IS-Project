@@ -1,4 +1,4 @@
-@extends('main')
+@extends('diff_main')
 @section('title', '| Create New Post')
 @section('content')
 @section('stylesheets')

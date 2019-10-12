@@ -1,5 +1,5 @@
 @extends('main')
-@section('title',' | Homepage')
+@section('title',' | Administrator')
 @section('content')
      ADMIN
 @endsection   

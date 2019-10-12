@@ -7,7 +7,7 @@
                         <p>Kwanza Tukule means, First, Let’s Eat in Swahili. We are cashless, social B2B
                         business that’s using technology, efficient supply chain and green energy to ensure
                         nutritious food is accessible and affordable for the many.</p>
-                        <ul>
+                        <ul style="list-style-type:circle;">
                         <li>We exist to make a positive difference in the livelihoods of our people,
                         socially and economically.</li>
                          <li>We do this by specifically focusing on revolutionising the complete end to end food vendors supply chain as it is a critical food access point for the many informal sector workers and people living in the slums in Kenya -who make up over 50% of the Kenyan working population.</li>
@@ -33,7 +33,7 @@
         <p>We are revolutionalizing the street vendor business model and providing them with one stop shop platform for all their needs including nutritious food ingredients to clean water.</p>
                         <p>Our model is cost effective, sustainable, scalable and it is environmentally friendly</p>
         <p>Kwanza Tukule sources products directly from farmers in wholesale - cutting out the middleman/woman whilst providing a market for farmers</p>
-                        <ul >
+                        <ul style="list-style-type:circle;">
                         <li>For high energy consuming pulses such as beans, we use affordable and sustainable green energy ( biogas) to pre-boil pulses in bulk</li>
                         <li>Delivery of pre-prepared packaged pulses is saving energy; cutting down charcoal usage by over 70%;  saving time and increasing business and household incomes levels</li>
                         </ul>

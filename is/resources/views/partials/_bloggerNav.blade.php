@@ -5,24 +5,8 @@
 &emsp;&emsp;
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 <ul class="navbar-nav mr-auto">
-  <li class="{{ Request::is('/') ? "nav-item active" : ""}}">
-    <a class="nav-link" href="/"><i class="fa fa-home"></i> Home <span class="sr-only">(current)</span></a>
-  </li>
-  &emsp;
-  <li class="{{ Request::is('blog') ? "nav-item active" : ""}}">
-    <a class="nav-link" href="/blog">Blogs <span class="sr-only">(current)</span></a>
-  </li>
-  &emsp;
-  <li class="nav-item">
-    <li class="{{ Request::is('about') ? "nav-item active" : ""}}">  
-    <a class="nav-link" href="/about"><i class="fa fa-info-circle"></i> About<span class="sr-only">(current)</span></a>
-  </li>   
-  &emsp;
-  <li class="nav-item">
-    <li class="{{ Request::is('contact') ? "nav-item active" : ""}}">  
-    <a class="nav-link" href="/contact"><i class="fa fa-envelope"></i> Contact Us<span class="sr-only">(current)</span></a>
-  </li> 
-  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+  
+  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
          @if( Auth::check() )
   <li class="nav-item dropdown" >
     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  

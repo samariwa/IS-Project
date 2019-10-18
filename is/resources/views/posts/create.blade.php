@@ -3,6 +3,15 @@
 @section('content')
 @section('stylesheets')
     {!! Html::style('css/parsley.css')!!}
+    <script src='https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script>
+    <script>
+      tinymce.init(
+      {
+          selector: 'textarea',
+          plugins: 'link code',
+          menubar: false,
+      });
+    </script>
 @endsection
   <div class="row">
   	<div class="col-md-8 col-md-offset-2">
@@ -13,11 +22,11 @@
              {{ Form::label('title', 'Title:') }}
              {{ Form::text('title',null,array('class'=>'form-control','required'=>'','maxlength'=>'255'))}}
              {{ Form::label('slug', 'Slug:') }}
-             {{ Form::text('slug',null,array('class'=>'form-control','required'=>'','minlength'=>'5','maxlength'=>'255'))}}
-           {{ Form::label('body', 'Post Body:') }}</br>
+             {{ Form::text('slug',null,array('class'=>'form-control','required'=>'','placeholder'=>'Allows only underscore special character...','minlength'=>'5','maxlength'=>'255'))}}<br>
              {{ Form::label('featured_image','Upload featured image:') }}
-             {{ Form::file('featured_image') }}
-             {{Form::textarea('body',null,array('class'=>'form-control','required'=>''))}}
+             {{ Form::file('featured_image') }}<br>
+             {{ Form::label('body', 'Post Body:') }}
+             {{Form::textarea('body',null,array('class'=>'form-control'))}}
              {{Form::submit('Create Post',array('class'=>'btn btn-success btn-lg btn-block','style'=>'margin-top:20px;'))}}
         {!! Form::close() !!}
 

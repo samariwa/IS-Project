@@ -13,12 +13,14 @@
 @endsection
 @section('content')
 <div class="row">
-    {!! Form::model($post,array('route'=> array('posts.update',$post->id),'method'=>'PUT'))!!}
+    {!! Form::model($post,array('route'=> array('posts.update',$post->id),'method'=>'PUT','files'=>true))!!}
 	<div class="col-md-12">
    {{ Form::label('title','Title:')}}	
    {{ Form::text('title', null, array("class"=>'form-control input-lg'))}}
    {{ Form::label('slug','Slug:',array("class"=>'form-spacing-top'))}}	
    {{ Form::text('slug', null, array("class"=>'form-control '))}}
+   {{ Form::label('featured_image','Update Featured Image:',array("class"=>'form-spacing-top')) }}
+   {{ Form::file('featured_image') }}<br>
     {{ Form::label('body','Body:',array("class"=>'form-spacing-top'))}}
    {{ Form::textarea('body',null,array("class"=>'form-control'))}}
    </br>

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Model;
 use Session;
+use Hash;
 use App\User;
 
 class BloggerResourceController extends Controller
@@ -53,7 +54,7 @@ class BloggerResourceController extends Controller
         $blogger->email = $request->email;
         $blogger->number = $request->number; 
         $blogger->role = $request->role; 
-        $blogger->password = $request->password;   
+        $blogger->password = Hash::make($request->input('password'));   
         $blogger->save();
         //flash sessions are used when you want the output to come after only one page request
         //Session::flash('key','value')
@@ -98,16 +99,14 @@ class BloggerResourceController extends Controller
         $bloggers = User::find($id);
         $this->validate($request, array(
           'name'=>'required|max:255',
-          'email'=>'required|max:255|email|unique:users',
-          'number'=>'required|max:10',
-          'password'=>'required|min:8'
+          'email'=>'required|max:255|email',
+          'number'=>'required|max:10'
         ));
         //save the data to the database
          $blogger = User::find($id);
          $blogger->name = $request->input('name');
          $blogger->email = $request->input('email');
          $blogger->number = $request->input('number');
-         $blogger->password = $request->input('password'); 
          $blogger->save();
         //set flash data with success message
         Session::flash('success','This Blogger was successfully updated.');

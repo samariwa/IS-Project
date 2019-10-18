@@ -10,8 +10,6 @@
            {{ Form::text('email', null, array("class"=>'form-control input-lg'))}}
             {{ Form::label('number','Number:',array("class"=>'form-spacing-top'))}}
             {{ Form::text('number', null, array("class"=>'form-control input-lg'))}}
-            {{ Form::label('password','Password:',array("class"=>'form-spacing-top'))}}
-            {{ Form::password('password', null, array("class"=>'form-control input-lg'))}}
            </br>
       </div>
 </div>

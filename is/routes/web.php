@@ -28,6 +28,7 @@ Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('ver
 Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 Route::get('blog/{slug}', array('as'=>'blog.single','uses'=>'BlogController@getSingle'))->where('slug','[\w\d\-\_]+');
 Route::get('blog', array('uses'=>'PagesController@getBlog','as'=>'blog.index'));
+Route::get('popular', 'PagesController@getPopular');
 Route::get('contact', 'PagesController@getContact');
 Route::post('contact', 'PagesController@postContact');
 Route::get('about', 'PagesController@getAbout');
@@ -54,3 +55,5 @@ Route::get('/superuser','SuperuserController@index')->name('superuser');
 Route::get('/manageAdmins','SuperuserController@admin')->name('manageAdmins');
 Route::get('/manageBloggers','SuperuserController@blogger')->name('manageBloggers');
 Route::post('/logout', 'Auth\LoginController@logout');
+
+

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Post;
 use Session;
 use Image;
+use Storage;
+
 
 class PostController extends Controller
 {
@@ -44,7 +46,8 @@ class PostController extends Controller
         $this->validate($request, array(
           'title'=>'required|max:255',
           'slug'=>'required|alpha_dash|min:5|max:255|unique:posts,slug',
-          'body'=>'required'
+          'body'=>'required',
+          'featured_image'=>'sometimes|image'
         ));
         //store in the database
         $post = new Post;
@@ -106,26 +109,30 @@ class PostController extends Controller
     {
                 //validate the data before we use it
         $post = Post::find($id);
-        if ($request->input('slug') == $post->slug) 
-        {
-        $this->validate($request, array(
-          'title'=>'required|max:255',
-          'body'=>'required'
-        ));
-        }
-        else
-           {
+       
              $this->validate($request, array(
           'title'=>'required|max:255',
-          'slug'=>'reuired|alpha_dash|min:5|max:255|unique:posts,slug',
-          'body'=>'required'
+          'slug'=>"required|alpha_dash|min:5|max:255|unique:posts,slug,$id",
+          'body'=>'required',
+          'featured_image'=>'image'
         ));
-           } 
         //save the data to the database
          $post = Post::find($id);
          $post->title = $request->input('title');
          $post->slug = $request->input('slug');
          $post->body = $request->input('body');
+         if ($request->hasFile('featured_image')) {
+            //add the new photo
+             $image = $request->file('featured_image');
+            $filename = time() .'.'.$image->getClientOriginalExtension();
+            $location = public_path('images/'.$filename);
+            Image::make($image)->resize(800,400)->save($location);
+            $oldFilename = $post->image;
+            //update the database
+            $post->image = $filename;
+             //Delete the old photo
+            Storage::delete($oldFilename);
+         }
          $post->save();
         //set flash data with success message
         Session::flash('success','This post was successfully saved.');

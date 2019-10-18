@@ -7,7 +7,7 @@
                       &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<img src="http://ideastank.guru/home/wp-content/uploads/2018/09/image001.jpg"  width="600px" height="400px">            
                       <hr class="my-4">
                       <p>Please read our popular post.</p>
-                      <a class="btn btn-success btn-lg" href="#" role="button">Popular Post</a>
+                      <a class="btn btn-success btn-lg" href="/popular" role="button">Popular Post</a>
                 </div>
             </div>
         </div> 

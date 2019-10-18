@@ -9,6 +9,7 @@
 {{ Html::style('css/styles.css')}}
 <!--fontawesome icon-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel = "icon" href ="http://127.0.0.1:8000/images/titleImage.jpeg" type = "image/x-icon"> 
 <!--incase you want to add a stylesheet-->
 @yield('stylesheets')
 <!--change the title for each page-->

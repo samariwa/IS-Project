@@ -22,8 +22,8 @@
                 <div class="col-md-4">
                     <div class="sep">
                 <div class="image-hover img-opacity">
-                    <img src="https://www.hunterlab.com/images/content-images/Food_Cereal.png" class="img-1" width="400px" height="400px">
-                    <img src="https://feedccl.org/wp-content/uploads/2017/09/vegetables-variety.jpg" class="img-2" width="400px" height="500px">
+                    <img src="{{url('images/Cereal.png')}}" class="img-1" width="400px" height="400px">
+                    <img src="{{url('images/vegetables.jpg')}}" class="img-2" width="400px" height="500px">
                 </div>      
             </div>
                 </div>

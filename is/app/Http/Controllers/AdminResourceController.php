@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Model;
 use Session;
+use Hash;
 use App\User;
 
 class AdminResourceController extends Controller
@@ -53,7 +54,7 @@ class AdminResourceController extends Controller
         $admin->email = $request->email;
         $admin->number = $request->number;
         $admin->role = $request->role; 
-        $admin->password = $request->password;
+        $admin->password = Hash::make($request->input('password'));
         $admin->save();
         //flash sessions are used when you want the output to come after only one page request
         //Session::flash('key','value')
@@ -98,16 +99,14 @@ class AdminResourceController extends Controller
         $admins = User::find($id);
         $this->validate($request, array(
           'name'=>'required|max:255',
-          'email'=>'required|max:255|email|unique:users',
-          'number'=>'required|max:10',
-          'password'=>'required|min:8'
+          'email'=>'required|max:255|email',
+          'number'=>'required|max:10'
         ));
         //save the data to the database
          $admin = User::find($id);
          $admin->name = $request->input('name');
          $admin->email = $request->input('email');
          $admin->number = $request->input('number');
-         $admin->password = $request->input('password'); 
          $admin->save();
         //set flash data with success message
         Session::flash('success','This administrator was successfully updated.');

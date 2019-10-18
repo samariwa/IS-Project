@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Post;
+use Session;
 use Mail;
 #extents to controllers.php which defines how all controllers should work
 class PagesController extends Controller
@@ -14,8 +15,7 @@ class PagesController extends Controller
 	#compile or process data from the model if needed
 	#pass the data to the correct view
 	public function getIndex()
-	{
-		
+	{	
         return view ('pages.welcome');   
 	}
      public function getBlog()
@@ -23,7 +23,11 @@ class PagesController extends Controller
       $posts = Post::orderBy('created_at','desc')->limit(20)->get();
       return view('blog.index')->withPosts($posts);
    }
-
+   public function getPopular()
+   {
+      $popular = Post::get()->sortByDesc('view_count');
+      return view('blog.popular')->withPopular($popular);
+   }
    public function getSingle($slug)
    {
      //fetch from the database based on slug
@@ -33,7 +37,6 @@ class PagesController extends Controller
    }
     public function getAbout()
     {
-    	
         return view ('pages.about');
     }
     public function getContact()
@@ -54,6 +57,8 @@ class PagesController extends Controller
          $message->subject($data['subject']);
      }
     );
+        Session::flash('success','Your Email was Sent!');
+        return redirect('/');
     }
 }
 ?>

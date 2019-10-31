@@ -22,13 +22,7 @@
                   	<th></th>
                   </thead>
                   <tbody>
-                  	@foreach($meals as $meal )           
-                    <tr>
-                    	<th>{{ $meal->id }}</th>
-                    	<td>{{ $meal->meal_name }}</td> 
-                    	<td><a href="{{ route('meals.show', $meal->id)}}" class="btn btn-light btn-sm">View</a>&ensp;<a href="{{ route('meals.edit', $meal->id)}}" class="btn btn-light btn-sm"><i class="fa fa-edit"></i>Edit</a></td>
-                    </tr>
-                  	@endforeach
+                  
                   </tbody>
              </table>
          </div>	

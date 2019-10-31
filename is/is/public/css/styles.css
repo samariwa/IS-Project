@@ -435,3 +435,22 @@ ul
   option {
     width: 1000px;
 }
+.anchor
+{
+  color: black;
+  text-decoration: none;
+}
+.positioning
+{
+  float:center;
+}
+.layer
+{
+   z-index: 4;
+}
+ div.vertical-line{
+      width: 1px; 
+      background-color: black; 
+      height: 100px; 
+      float: left; 
+    }

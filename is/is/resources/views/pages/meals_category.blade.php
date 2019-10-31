@@ -1,8 +1,8 @@
 @extends('main')
-@section('title',' | {{ $category->category_name }}')
+@section('title',' | {{ $categories->category_name }}')
 @section('content')
 <br>
-<h1>{{ $category->category_name }}</h1>
+<h1>{{ $categories->category_name }}</h1>
 <br>
 <div class="row">
          <div class="col-md-12">
@@ -11,13 +11,33 @@
                     <th>#</th>
                     <th>Name</th>
                     <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                   </thead>
                   <tbody>
-                    @foreach($category->meals as $meal)
+                    @foreach($categories->meals as $meal)
                     <tr>
                       <th>{{ $meal->id }}</th>
                       <td>{{ $meal->meal_name }}</td>
-                      <td><a href="/mealsSelect" class="btn btn-light btn-sm">Select</a>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <form method="POST" action="/mealsSelect">{{ csrf_field() }}
+                      <td><button type="submit" value="{{ $meal->meal_name }}" class="btn btn-light btn-sm">Select</button></td>
+                      </form>
                     </tr>
                     @endforeach
                   </tbody>

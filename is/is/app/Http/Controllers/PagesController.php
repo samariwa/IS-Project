@@ -9,6 +9,10 @@ use App\Comment;
 use App\Post;
 use Session;
 use App\Category;
+use App\Meal;
+use App\OrderDetail;
+use App\Order;
+use App\Recipe;
 use Mail;
 #extents to controllers.php which defines how all controllers should work
 class PagesController extends Controller
@@ -20,48 +24,50 @@ class PagesController extends Controller
 	#pass the data to the correct view
 	public function getIndex()
 	{	
-    $categories = DB::table('categories')->get();
-        return view ('pages.welcome')->withCategories($categories);   
+        return view ('pages.welcome');   
 	}
-  public function postIndex(Request $request, $id)
-  { 
-    $result = $request->input('categories');
-    $this->getCategoriesjson($id); 
-    return redirect()->route('meals_category',$result,$id);
-  }
-  public function getCategoriesjson($id)
-  { 
-    
-    $categories = DB::table('categories')->where('category_name',$result)->get(); 
-    $option_full = "";
-    $foreach ($categories as $key => $value) {
-      $option_id = $value['id'];
-      $option_name = $value['name'];
-
-      $option = "<option value=".$option_id.">".$option_name."</option>";
-      $option_full.=$option;
+  function fetch(Request $request)
+    {
+     if($request->get('query'))
+     {
+      $query = $request->get('query');
+      $data = DB::table('categories')
+        ->where('category_name', 'LIKE', "%{$query}%")
+        ->get();
+      $output = '<ul class="dropdown-menu positioning" style="display:block; position:relative ; width:800px">';
+      foreach($data as $row)
+      {
+       $output .= '
+       <li class="dropdown-item anchor positioning">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<b>'.$row->category_name.'<b></li>
+       ';
+      }
+      $output .= '</ul>';
+      echo $output;
+     }
     }
-
-    return json_encode($option_full);
-  }
-  public function postCategories(Request $request, $id)
+    public function postSearch(Request $request)
+    {
+      $result = $request->category_name;
+      $categories = \App\Category::with('meals')->where('category_name','Cereals')->first(); 
+      return view ('pages.meals_category',compact('categories'));  
+   }
+   ///////////////////////////////////////////////////////////////////////////////////////
+  
+  public function postCategories(Request $request)
   { 
-     $meal = $request->input('meal');
-     $this->getSelection($meal,$id); 
-     return redirect()->route('/select',$meal,$id);
+     $meal = $request->meal;
+     $recipes = \App\Meal::with('recipes')->where('meal_name','Beans')->first(); 
+     $ingredients = \App\Meal::with('OrderDetails')->where('meal_name','Beans')->first();
+     $id_type = $ingredients->type_id;
+      $type = DB::table('food_types')->where('id',$id_type)->get(); 
+      return view ('pages.select',compact('ingredients','meal','recipes','type'));  
   }
-  public function getSelection($meal,$id)
-  { 
-    $ingredients = DB::table('meals')->where('meal_name',$meal)->get();
-    $commodities = $ingredients->order_name; 
-    return view('pages.select')->withCommodities($commodities)->withMeal($meal); 
-  }
-  public function postSelection(Request $request, $id)
+  public function postSelection(Request $request)
   { 
     $order =  $request->input('order');
-    $this->getConfirmation($order,$id);
+    $this->getConfirmation($order);
     if (Auth::check()) {
-       return redirect()->route('/confirm',$order,$id);
+       return redirect()->route('/confirm',$order);
       } else {
         return redirect()->route('login');
       }
@@ -84,6 +90,7 @@ class PagesController extends Controller
         $details->number = $request->number;
         $details->delivery_location = $request->location; 
         $details->save();
+        return redirect()->route('pay');
   }
   public function getPayment()
   {  
@@ -101,12 +108,9 @@ class PagesController extends Controller
    }
    public function getPopular()
    {
-    $posts = DB::table('posts')->get();
-    $commentsCount = $posts->comments()->count();
-    $post = DB::table('posts')
-    ->orderBy($commentsCount,'desc')
-    ->take(1)
-    ->get(); 
+    $posts = Post::with('comments')->get()->sortBy(function($post) {
+    return $post->comments->count();
+})->reverse();
       return view('blog.popular')->withPost($post);
    }
    public function getSingle($slug)

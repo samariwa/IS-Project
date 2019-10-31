@@ -13,4 +13,8 @@ public function meal()
 	{
     return $this->belongsTo('App\Meal');
 }
+public function foodType()
+    {
+    	return $this->belongsTo('App\Food_type');
+    }
 }

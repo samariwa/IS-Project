@@ -30,9 +30,9 @@ Route::get('blog/{slug}', array('as'=>'blog.single','uses'=>'BlogController@getS
 Route::get('blog', array('uses'=>'PagesController@getBlog','as'=>'blog.index'));
 Route::get('popular', 'PagesController@getPopular');
 Route::get('contact', 'PagesController@getContact');
-Route::get('meals_category', 'PagesController@getCategoriesjson');
+Route::post('meal_category', 'PagesController@fetch')->name('autocomplete.fetch');
+Route::post('search', 'PagesController@postSearch');
 Route::post('contact', 'PagesController@postContact');
-Route::post('categories', 'PagesController@postIndex');
 Route::get('about', 'PagesController@getAbout');
 Route::get('deliverers', 'AdminController@getDeliverers');
 Route::get('cleaners', 'AdminController@getCleaners');
@@ -74,8 +74,10 @@ Route::resource('orders', 'OrdersController');
 Route::get('/payment', 'PaymentsController@push')->name('payment.push');
 Route::get('/confirm', 'PagesController@getConfirmation');
 Route::post('/confirmation', 'PagesController@postConfirmation');
-Route::get('/pay', 'PagesController@getPayment');
+Route::get('/pay', 'PagesController@getPayment')->name('pay');
 Route::get('/complete', 'PagesController@getComplete');
 Route::get('/select', 'PagesController@getSelection');
 Route::post('/mealsSelect', 'PagesController@postCategories');
 Route::post('/confirmSelect', 'PagesController@postSelection');
+
+

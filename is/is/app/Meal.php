@@ -10,7 +10,7 @@ class Meal extends Model
     {
     return $this->hasMany('App\Recipe');
      }
-     public function OrderDetail()
+     public function OrderDetails()
     {
     return $this->hasMany('App\OrderDetail');
      }

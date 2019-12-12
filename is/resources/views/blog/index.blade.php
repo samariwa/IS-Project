@@ -4,13 +4,24 @@
 <div class="row">
             <div class="col-md-12">
                 <div class="jumbotron">
-                      &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<img src="http://ideastank.guru/home/wp-content/uploads/2018/09/image001.jpg"  width="600px" height="400px">            
-                      <hr class="my-4">
-                      <p>Please read our popular post.</p>
-                      <a class="btn btn-success btn-lg" href="/popular" role="button">Popular Post</a>
+                      <div class="row">
+                             <div class="col-md-4">
+                              <br><br><br><br>
+                            <p><b><i>Latest Updates</i></b></p>
+                            <p><b><i>Around the Continent</i></b></p>
+                            <p><b><i>Be Informed</i></b></p>
+                            <a href="https://twitter.com/kwanzatukule?lang=en">Get Kwanza Tukule News on Twitter <i class="fa fa-twitter"></i></a>
+                             </div>
+                             <div class="col-md-8">
+                            <img src="http://ideastank.guru/home/wp-content/uploads/2018/09/image001.jpg"  width="600px" height="400px"> 
+                             </div>
+                        </div> 
+                          <hr class="my-4">
+                        <p>Please read our popular post.</p>
+                        <a class="btn btn-success btn-lg" href="/popular" role="button">Popular Post</a>
+                      </div>           
                 </div>
             </div>
-        </div> 
   <div class="row">
   	<div class="col-md-8 col-md-offset-2">
   		<h2>Blog</h2>
@@ -28,3 +39,5 @@
   <hr>
   @endforeach
 @endsection
+
+                      

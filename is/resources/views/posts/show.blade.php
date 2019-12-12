@@ -25,7 +25,7 @@
                     <td>{{ $comment->email }}</td>
                     <td>{{ $comment->comment }}</td>
                     <td>
-                        <a href="{{ route('comments.edit', $comment->id)}}" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a><br><br>
+                        <a href="{{ route('comments.edit', $comment->id)}}" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>&emsp;
                        <a href="{{ route('comments.delete',$comment->id)}}" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a>
                     </td>
                 </tr>

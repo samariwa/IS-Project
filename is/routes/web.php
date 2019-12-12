@@ -30,8 +30,15 @@ Route::get('blog/{slug}', array('as'=>'blog.single','uses'=>'BlogController@getS
 Route::get('blog', array('uses'=>'PagesController@getBlog','as'=>'blog.index'));
 Route::get('popular', 'PagesController@getPopular');
 Route::get('contact', 'PagesController@getContact');
+Route::post('meal_category', 'PagesController@fetch')->name('autocomplete.fetch');
+Route::post('search', 'PagesController@postSearch');
 Route::post('contact', 'PagesController@postContact');
 Route::get('about', 'PagesController@getAbout');
+Route::get('deliverers', 'AdminController@getDeliverers');
+Route::get('cleaners', 'AdminController@getCleaners');
+Route::get('cooks', 'AdminController@getCooks');
+Route::get('reports', 'AdminController@getReports');
+
 Route::get('/', 'PagesController@getIndex');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('posts', 'PostController');
@@ -45,15 +52,33 @@ Auth::routes(['verify'=>true]);
 Route::resource('posts', 'PostController');
 Route::resource('admins', 'AdminResourceController');
 Route::resource('bloggers', 'BloggerResourceController');
+Route::resource('meals', 'MealController');
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
+Route::middleware('customer')->group(function(){
+Route::get('/home', 'HomeController@index')->name('home');	
+});
+Route::middleware('admin')->group(function(){
 Route::get('/admin','AdminController@index')->name('admin');
+});
+Route::middleware('blogger')->group(function(){
 Route::get('/blogger','BloggerController@index')->name('blogger');
-Route::get('/superuser','SuperuserController@index')->name('superuser');
+});
+Route::middleware('superuser')->group(function(){
+Route::get('/superuser','SuperuserController@index')->name('superuser');	
+});
+Route::get('/meals','MealController@index');
 Route::get('/manageAdmins','SuperuserController@admin')->name('manageAdmins');
 Route::get('/manageBloggers','SuperuserController@blogger')->name('manageBloggers');
 Route::post('/logout', 'Auth\LoginController@logout');
-
+Route::resource('orders', 'OrdersController');
+Route::get('/payment', 'PaymentsController@push')->name('payment.push');
+Route::get('/pay', 'PagesController@getPayment')->name('pay');
+Route::get('/complete', 'PagesController@getComplete');
+Route::get('/category','PagesController@getCategory');
+Route::get('/select', 'PagesController@getSelection');
+Route::get('/pending', 'AdminController@getOrders');
+Route::post('/mealsSelect', 'PagesController@postCategories');
+Route::post('/postCheck', 'AdminController@postCheck');
+Route::post('/confirmSelect', 'PagesController@postSelection');
+Route::get('/profile', 'PagesController@getProfile')->name('Profile');
 

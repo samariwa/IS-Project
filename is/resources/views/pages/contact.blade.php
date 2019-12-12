@@ -30,12 +30,26 @@
                     <p>+254 757 427 227</p>
                     <p>info@Kwanzatukule.com</p>
                 </div>
-                <div class="col-md-8">
-                    
-                </div>
-            </div>
- @endsection       
+                <div class="col-md-8 " id="map" ></div>
+                <script>
+// Initialize and add the map
+function initMap() {
+  // The location of headquaters
+  var headquaters = {lat: -1.305730, lng: 36.830139};
+  // The map, centered at headquaters
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 15,draggable: false, zoomControl:false,streetViewControl:false, center: headquaters});
+  // The marker, positioned at headquaters
+  var marker = new google.maps.Marker({position: headquaters, map: map,});
+  marker.addListener('click',function(){
+    infowindow.open(map,marker);
+  });
+}
 
+    </script>
+            </div>
+
+ @endsection       
 
 
 
